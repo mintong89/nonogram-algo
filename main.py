@@ -2,7 +2,7 @@
 # ------------------------------------
 # Indication:
 # -----------
-# O: blank, X: box
+# O: blank, X: box, -: Guaranteed blank
 
 from simple_boxes import simple_boxes
 

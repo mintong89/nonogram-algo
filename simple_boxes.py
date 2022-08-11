@@ -1,6 +1,6 @@
 # Simple boxes.
 
-def simple_boxes(clues: list, row_num: int):
+def simple_boxes(clues: list[int], row_num: int):
     '''
     # Simple boxes
     --------------
