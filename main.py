@@ -2,8 +2,12 @@
 # ------------------------------------
 # Indication:
 # -----------
-# O: blank, X: box, -: Guaranteed blank
+# -: blank, X: box, O: flag
 
-from simple_boxes import simple_boxes
+from util import NonoBoard
 
-print(simple_boxes([4, 3], 10))
+test = NonoBoard(10)
+
+test.set(['O', 'O', 'X', 'X', 'X', 'O', 'X', 'O', 'X', 'O'], 0)
+
+print(test.get(0, 'vertical'))
