@@ -1,14 +1,9 @@
-# Shit Nonogram algorithm by mintong89
-# ------------------------------------
-# Indication:
-# -----------
-# -: blank, X: box, O: flag
 
-from util import NonoBoard
-from simple_boxes import simple_boxes
+from techniques import simple_boxes
+from nono_board import NonoBoard, NonoList
 
-test = NonoBoard(10)
 
-test.set(['O', 'O', 'X', 'X', 'X', 'O', 'X', 'O', 'X', 'O'], 1)
+test1 = NonoList([1, 1, 1, 0, 0, 0, 0, 0, 0, 0])
+test2 = NonoList([0, 0, 0, 0, 0, 0, 0, 1, 1, 1])
 
-print(simple_boxes(space_size=10, clues=[4, 3]))
+print(test1 + test2)
