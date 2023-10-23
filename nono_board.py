@@ -13,6 +13,18 @@ class NonoList:
         if len(list_1) != len(list_2):
             raise ValueError('Lists are not in same size.')
 
+    def _add_items(self, a: NonoValue.NONOTYPE, b: NonoValue.NONOTYPE):
+        if a == NonoValue.FILLED and b == NonoValue.VOID or a == NonoValue.VOID and b == NonoValue.FILLED:
+            raise ValueError(
+                f'Expected any one is empty field or both values are same but contain conflict values.')
+
+        if a == NonoValue.VOID or b == NonoValue.VOID:
+            return NonoValue.VOID
+        elif a == NonoValue.FILLED or b == NonoValue.FILLED:
+            return NonoValue.FILLED
+        else:
+            return NonoValue.EMPTY
+
     @overload
     def __init__(self, size: int):
         ...
@@ -42,21 +54,7 @@ class NonoList:
     def __add__(self, other):
         self._check_list_sizes(self, other)
 
-        result = []
-
-        for i in range(len(self)):
-            if self[i] == NonoValue.FILLED and other[i] == NonoValue.VOID or self[i] == NonoValue.VOID and other[i] == NonoValue.FILLED:
-                raise ValueError(
-                    f'On row {i} expected any one is empty field but contain conflict values.')
-
-            if self[i] == NonoValue.VOID or other[i] == NonoValue.VOID:
-                result.append(NonoValue.VOID)
-            elif self[i] == NonoValue.FILLED or other[i] == NonoValue.FILLED:
-                result.append(NonoValue.FILLED)
-            else:
-                result.append(NonoValue.EMPTY)
-
-        return NonoList(result)
+        return NonoList(list(map(self._add_items, self, other)))
 
     def starts(self):
         return [index for index, value in enumerate(self.values) if (index == 0 or self.values[index - 1] != NonoValue.FILLED) and value == NonoValue.FILLED]
